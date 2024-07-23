@@ -34,10 +34,16 @@ def weather_data():
     else:
         wind_from = f"{str_data_from_page("fact__unit")[-2]}{str_data_from_page("fact__unit")[-1]}"
     
+    try:
+        wind_speed = str_data_from_page("wind-speed")
+    except:
+        wind_speed = "нет данных"
+        wind_from = "нет данных"
+
     weather_data = {
         "temp": str_data_from_page("temp__value temp__value_with-unit"),
         "condition": str_data_from_page("link__condition day-anchor i-bem"),
-        "wind_speed": str_data_from_page("wind-speed"),
+        "wind_speed": wind_speed,
         "wind_from": wind_from
     }
     return(weather_data)

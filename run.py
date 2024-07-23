@@ -9,8 +9,9 @@ def main():
     try:
         asyncio.run(start())
     except:
-        time.sleep(10)
         print("ошибка")
+        time.sleep(2.5)
+        main()
 
  
 if __name__ == "__main__":
