@@ -37,8 +37,8 @@ def weather_data():
     try:
         wind_speed = str_data_from_page("wind-speed")
     except:
-        wind_speed = "нет данных"
-        wind_from = "нет данных"
+        wind_speed = "no data"
+        wind_from = "no data"
 
     weather_data = {
         "temp": str_data_from_page("temp__value temp__value_with-unit"),

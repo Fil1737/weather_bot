@@ -25,10 +25,15 @@ async def location_handler(message: Message):
     longitude = message.location.longitude
     save_html_page(latitude, longitude)
     weather_inf = weather_data()
-    print(weather_inf["temp"])
 
-    await message.answer(f"{weather_inf["temp"]} градусов, {weather_inf["condition"]}\n"
-                         f"ветер {weather_inf["wind_speed"]} м/с с {weather_inf["wind_from"]}")
+    if weather_inf["wind_speed"] == "no data":
+        await message.answer(f"{weather_inf["temp"]}, {weather_inf["condition"]}\n"
+                             f"штиль")
+    else:
+        await message.answer(f"{weather_inf["temp"]}, {weather_inf["condition"]}\n"
+                             f"ветер {weather_inf["wind_speed"]} м/с, {weather_inf["wind_from"]}")
+
+
 
 
 @router.message(F.text.lower())
